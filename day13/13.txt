@@ -1,0 +1,116 @@
+前情回顾
+
+1. 基础概念
+   * 什么是数据库，为什么使用数据库？
+   * 数据库工作模型
+   * 数据库分类
+   * 关系型数据库组织结构
+     数据元素--》记录-->数据表-》数据库
+
+2. mysql  关系型   开源   c/c++
+
+3. SQL语句
+
+   * 数据库操作
+     show databases;
+     create database [db_name];
+     use [db];
+     select database();
+     drop database [db];
+
+   * 数据表操作
+
+     1.根据业务需求确定存什么-》设计字段-》确定数据类型
+     2.数据类型
+         数字  tinyint  int  float  decimal
+         字符串  char  varchar  text  longblob  set  enum
+     3.字段约束
+         unsigned
+         primary key --> auto_increment
+         not null
+         default [value]
+
+     4. show tables;
+        create table [tb_name] (col type ...,);
+        desc [tb];
+        drop table [tb];
+
+4. 增删改查
+   insert into [tb_name] [col1..] values (val...),.;
+
+   select [*/col1..] from [tb] [where]
+
+   update [tb] set [col=val] [where..]
+
+   delete from [tb] [where...];
+
+   where 字句
+       算数   逻辑   比较
+
+创建数据库books
+        创建数据表book
+
+         create database books charset=utf8;
+
+        表字段如下：
+        id  title  author  price  publication  comment
+
+        create table book (id int primary key auto_increment,title varchar(50),author varchar(20),price decimal(5,2),publication varchar(50),comment text);
+
+        插入若干数据
+        price   30--80
+        出版社   中国教育   机械工业  人民教育
+
+        insert into book values (1,"骆驼祥 子",'老舍',46.8,"中国教育出版社","你是祥子么？");
+
+
+        查找练习：
+          1. 查找所有价格30多的书
+          select * from book where price >=30 and price < 40;
+          2. 查找出版社为中国教育出版社的
+          select * from book where publication="中国教育出版社";
+          3. 查找老舍写的中国教育出版社的
+           select * from book where publication="中国教育出版社"  and author = '老舍';
+
+          4. 查找备注不为空的
+           select * from book where comment is not null;
+
+          5. 查找价格大于60的，只看书名和价格
+          select title,price from book where price > 60;
+
+          6. 查找钱钟书或者莫言写的书
+          select title,price from book where author in ('钱钟书','莫言');
+
+练习 ： 1. 将某一本书的价格修改为45
+        update book set price=45 where title='呐喊';
+      2. 增加一个字段为出版日期，类型为date
+       alter table book add publication_date date;
+
+      3. 将骆驼祥子的出版日期定位2012-1-16
+
+      4. 将呐喊的出版日期定位1999-10-1
+      update book set publication_date='1999-10-1' where title='呐喊';
+      5. 删除2000年以前出版的图书
+      delete from book where publication_date < '2000-1-1';
+
+
+练习： 1. 创建表    sanguo
+      2. 表结构如下
+
+           id  name  gender  country
+           attack（>100）  defense(0-100)
+
+      3. 插入数据
+           魏：司马懿  夏侯渊  张辽  曹操 甄姬
+           蜀：赵云 孙尚香 诸葛亮 张飞 关羽
+           吴：周瑜 小乔  大乔  陆逊  鲁肃
+
+      4. 查找
+           查找所有蜀国人信息
+           将赵云的攻击力设为360,防御力设置为68
+           将吴国英雄攻击力超过300的 改为300，防御力改为65
+           查找攻击力高于250的蜀国英雄的名字和攻击力
+           将所有英雄攻击力按从高到底排名，如果攻击力相同则按照防御力从高到底排名
+           将魏蜀两国应用名字为三个字的按照防御力升序排序
+           找到吴国英雄中攻击力排名前2的
+

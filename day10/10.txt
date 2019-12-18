@@ -1,0 +1,16 @@
+前景回顾
+1.网络并发模型
+    fork_server
+    process_server
+    thread_server
+
+2.文件服务(结构,分发思想,请求确认机制)
+
+3.IO模型
+    阻塞IO   非阻塞IO   IO  多路复用
+
+    阻塞IO:默认形态,效率低,实现简单
+
+    非阻塞IO:将原本的阻塞函数办为非阻塞
+
+    setbloking()   settimeout()

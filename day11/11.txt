@@ -1,0 +1,28 @@
+练习：将元字符按照：
+     匹配字符  匹配重复  匹配位置
+     进行分类
+
+
+cookie ：
+
+   raw字符串 -》 r“xxxx”
+   * 对字符串不进行字符串转义处理
+
+练习:
+   匹配数字
+   12  1.6  -1.5 -32  46.8%  1/2
+
+   re.findall(r'-?\d+\.?/?\d*%?',"12 -12 34.5 -3.14 1/2 46%")
+
+   匹配邮箱 xxxx@xxx.com
+           xxx@xxx.cn
+   re.findall(r'\w+@\w+\.com|\w+@\w+\.cn',"王:wangwc@tedu.cn,李:li@126.com")
+   re.search(r'\w+@\w+(\.com)?(\.cn)?',"李:li@126.com.cn").group()
+
+
+   匹配大写字母开头单词
+   Hello  CBD  I  iPython
+
+   re.findall(r"\b[A-Z]+[a-z]*\b","Hello  CBD  I  iPython")
+
+   在线练习： http://tool.chinaz.com/regex/
